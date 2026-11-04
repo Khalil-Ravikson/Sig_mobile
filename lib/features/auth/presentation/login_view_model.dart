@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import '../../../core/error/result.dart';
@@ -10,7 +12,7 @@ part 'login_view_model.g.dart';
 @riverpod
 class LoginViewModel extends _$LoginViewModel {
   @override
-  Future<ResultadoLogin?> build() async => null;
+  FutureOr<ResultadoLogin?> build() => null;
 
   Future<void> entrar(String cpf, String senha) async {
     state = const AsyncLoading();
