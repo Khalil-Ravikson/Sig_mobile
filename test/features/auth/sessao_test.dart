@@ -1,10 +1,16 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:siguema_mobile/app_router.dart';
+import 'package:siguema_mobile/features/auth/data/auth_api.dart';
+import 'package:siguema_mobile/features/auth/data/auth_repository_impl.dart';
 import 'package:siguema_mobile/features/auth/domain/resultado_login.dart';
 import 'package:siguema_mobile/features/auth/domain/sessao.dart';
 import 'package:siguema_mobile/features/auth/domain/vinculo.dart';
+import 'package:siguema_mobile/features/auth/presentation/auth_providers.dart';
 import 'package:siguema_mobile/features/auth/presentation/sessao_provider.dart';
+
+import '../../support/fake_token_store.dart';
 
 const _v1 = Vinculo(id: 1, tipo: TipoVinculo.aluno, descricao: 'Graduação');
 const _v2 = Vinculo(id: 2, tipo: TipoVinculo.aluno, descricao: 'Pós');
@@ -18,16 +24,28 @@ void main() {
     SessaoNotifier notifier() => container.read(sessaoProvider.notifier);
     Sessao sessao() => container.read(sessaoProvider);
 
-    setUp(() => container = ProviderContainer());
+    late FakeTokenStore tokens;
+
+    setUp(() {
+      tokens = FakeTokenStore();
+      container = ProviderContainer(
+        overrides: [
+          authRepositoryProvider.overrideWithValue(
+            AuthRepositoryImpl(AuthApi(Dio()), tokens),
+          ),
+        ],
+      );
+    });
     tearDown(() => container.dispose());
 
     test('começa vazia', () {
       expect(sessao().logado, isFalse);
     });
 
-    test('um só vínculo já fica escolhido', () {
+    test('entrou não escolhe o vínculo sozinho, nem com um só', () {
       notifier().entrou(_login([_v1]));
-      expect(sessao().vinculo, _v1);
+      expect(sessao().logado, isTrue);
+      expect(sessao().vinculoEscolhido, isFalse);
     });
 
     test('dois vínculos esperam a escolha', () {
@@ -46,10 +64,12 @@ void main() {
       expect(sessao().vinculoEscolhido, isFalse);
     });
 
-    test('sair limpa tudo', () {
+    test('sair limpa a sessão e apaga o token', () async {
+      tokens.token = 'tok';
       notifier().entrou(_login([_v1]));
-      notifier().sair();
+      await notifier().sair();
       expect(sessao().logado, isFalse);
+      expect(tokens.token, isNull);
     });
   });
 

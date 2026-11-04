@@ -49,8 +49,6 @@ final routerProvider = Provider<GoRouter>((ref) {
           return VinculoPage(
             resultado: login,
             onSair: () => ref.read(sessaoProvider.notifier).sair(),
-            onEscolher: (v) =>
-                ref.read(sessaoProvider.notifier).escolherVinculo(v),
           );
         },
       ),
