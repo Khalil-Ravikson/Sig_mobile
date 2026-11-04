@@ -62,6 +62,11 @@ const _pos = Vinculo(
   descricao: 'Pós-graduação',
 );
 
+Future<void> _abrirMenuConta(WidgetTester tester) async {
+  await tester.tap(find.byTooltip('Menu da conta'));
+  await tester.pumpAndSettle();
+}
+
 void main() {
   testWidgets('abre na tela de login', (tester) async {
     await tester.pumpWidget(
@@ -81,8 +86,11 @@ void main() {
     await _entrarComCpfFicticio(tester, const [_graduacao]);
     expect(find.byType(HomePage), findsOneWidget);
     expect(find.byType(VinculoPage), findsNothing);
-    expect(find.text('Graduação'), findsOneWidget);
+    expect(find.text('Olá, Maria'), findsOneWidget);
+    expect(find.textContaining('Graduação'), findsOneWidget);
+    await _abrirMenuConta(tester);
     expect(find.text('Trocar vínculo'), findsNothing);
+    expect(find.text('Sair'), findsOneWidget);
   });
 
   testWidgets('com dois vínculos mostra a escolha e segue com o escolhido', (
@@ -93,13 +101,14 @@ void main() {
     await tester.tap(find.text('Pós-graduação'));
     await tester.pumpAndSettle();
     expect(find.byType(HomePage), findsOneWidget);
-    expect(find.text('Pós-graduação'), findsOneWidget);
+    expect(find.textContaining('Pós-graduação'), findsOneWidget);
   });
 
   testWidgets('Trocar vínculo volta para a escolha', (tester) async {
     await _entrarComCpfFicticio(tester, const [_graduacao, _pos]);
     await tester.tap(find.text('Graduação'));
     await tester.pumpAndSettle();
+    await _abrirMenuConta(tester);
     await tester.tap(find.text('Trocar vínculo'));
     await tester.pumpAndSettle();
     expect(find.byType(VinculoPage), findsOneWidget);
@@ -107,6 +116,7 @@ void main() {
 
   testWidgets('Sair volta para o login', (tester) async {
     await _entrarComCpfFicticio(tester, const [_graduacao]);
+    await _abrirMenuConta(tester);
     await tester.tap(find.text('Sair'));
     await tester.pumpAndSettle();
     expect(find.widgetWithText(FilledButton, 'Entrar'), findsOneWidget);
