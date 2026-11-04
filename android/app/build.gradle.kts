@@ -24,6 +24,10 @@ android {
         versionName = flutter.versionName
     }
 
+    buildFeatures {
+        resValues = true
+    }
+
     flavorDimensions += "ambiente"
     productFlavors {
         create("dev") {
