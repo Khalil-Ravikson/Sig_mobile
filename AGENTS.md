@@ -27,6 +27,8 @@ Tudo abaixo é **proposta** até virar ADR aceita. Em aberto: API do SIGUEMA exi
 - A UI nunca chama o `dio` diretamente: UI → ViewModel → Repository → API/cache.
 - Dados do SIGAA/SIGUEMA passam por DTO + Mapper; o modelo do app não herda o formato do legado.
 - Estados de tela via `AsyncValue`/sealed classes; sem lógica de negócio no `build()`.
+- Dependências entre camadas: `presentation` → `domain` ← `data`. `domain` não importa Flutter, `dio` nem `data/`. Só `*_api.dart` usa o `dio`. Repository devolve `Result<T>` (`core/error`), nunca lança para a UI. Uma feature não importa a `data/` de outra.
+- Exemplo de referência: `lib/features/auth/`. Arquivos `*.g.dart` e `*.freezed.dart` não são versionados: rode `build_runner` depois do `pub get`.
 
 ## Comandos
 ```bash
