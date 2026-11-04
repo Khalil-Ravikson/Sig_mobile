@@ -9,31 +9,6 @@ import 'features/auth/domain/vinculo.dart';
 import 'features/auth/presentation/login_page.dart';
 import 'features/auth/presentation/vinculo_page.dart';
 
-/// Provisório, só para ver a tela sem API: `--dart-define=PREVIEW=vinculo`.
-const _preview = String.fromEnvironment('PREVIEW');
-
-const _exemploPreview = ResultadoLogin(
-  nome: 'Ana Teste da Silva',
-  tokenTemporario: 'preview',
-  vinculos: [
-    Vinculo(
-      id: 1,
-      tipo: TipoVinculo.professor,
-      descricao: 'Dep. de Engenharia de Computação',
-    ),
-    Vinculo(
-      id: 2,
-      tipo: TipoVinculo.servidor,
-      descricao: 'Coordenação de TI (titular)',
-    ),
-    Vinculo(
-      id: 3,
-      tipo: TipoVinculo.aluno,
-      descricao: 'Engenharia de Computação (Pós-graduação)',
-    ),
-  ],
-);
-
 class App extends ConsumerWidget {
   const App({super.key});
 
@@ -65,12 +40,6 @@ class App extends ConsumerWidget {
             );
           }
 
-          if (_preview == 'vinculo') {
-            return VinculoPage(
-              resultado: _exemploPreview,
-              onEscolher: entrarComo,
-            );
-          }
           return LoginPage(onEntrou: aposLogin);
         },
       ),
