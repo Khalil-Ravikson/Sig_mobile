@@ -26,6 +26,15 @@ class _RepositorioFalso implements AuthRepository {
     ultimoCpf = cpf;
     return resposta;
   }
+
+  @override
+  Future<Result<void>> escolherVinculo({
+    required int vinculoId,
+    required String tokenTemporario,
+  }) async => const Sucesso<void>(null);
+
+  @override
+  Future<void> sair() async {}
 }
 
 const _sucesso = Sucesso(
