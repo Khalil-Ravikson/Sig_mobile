@@ -1,0 +1,7 @@
+services:
+  mock-api:
+    image: wiremock/wiremock:3.9.1
+    ports:
+      - "4010:8080"
+    volumes:
+      - ./wiremock:/home/wiremock:ro

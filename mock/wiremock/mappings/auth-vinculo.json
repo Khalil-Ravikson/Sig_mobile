@@ -1,0 +1,28 @@
+{
+  "mappings": [
+    {
+      "name": "vinculo: token temporario valido",
+      "priority": 1,
+      "request": {
+        "method": "POST",
+        "url": "/auth/vinculo",
+        "headers": { "Authorization": { "matches": "Bearer tmp-.+" } }
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "token": "tok-mock-definitivo", "expiraEm": 900 }
+      }
+    },
+    {
+      "name": "vinculo: sem token valido",
+      "priority": 10,
+      "request": { "method": "POST", "url": "/auth/vinculo" },
+      "response": {
+        "status": 401,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "codigo": "TOKEN_INVALIDO", "mensagem": "Token temporario ausente ou invalido" }
+      }
+    }
+  ]
+}

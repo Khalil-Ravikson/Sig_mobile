@@ -1,0 +1,85 @@
+{
+  "mappings": [
+    {
+      "name": "login: aluno com 1 vinculo",
+      "priority": 1,
+      "request": {
+        "method": "POST",
+        "url": "/auth/login",
+        "bodyPatterns": [
+          { "matchesJsonPath": { "expression": "$.cpf", "equalTo": "00000000001" } },
+          { "matchesJsonPath": { "expression": "$.senha", "equalTo": "senha123" } }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+          "nome": "Maria Teste da Silva",
+          "vinculos": [
+            { "id": 1, "tipo": "ALUNO", "descricao": "Engenharia Civil", "matricula": "2022001" }
+          ],
+          "tokenTemporario": "tmp-aluno-1"
+        }
+      }
+    },
+    {
+      "name": "login: aluno com 2 vinculos (graduacao e pos)",
+      "priority": 1,
+      "request": {
+        "method": "POST",
+        "url": "/auth/login",
+        "bodyPatterns": [
+          { "matchesJsonPath": { "expression": "$.cpf", "equalTo": "00000000002" } },
+          { "matchesJsonPath": { "expression": "$.senha", "equalTo": "senha123" } }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+          "nome": "Joao Exemplo de Souza",
+          "vinculos": [
+            { "id": 2, "tipo": "ALUNO", "descricao": "Ciencia da Computacao (Graduacao)", "matricula": "2021002" },
+            { "id": 3, "tipo": "ALUNO", "descricao": "Engenharia de Computacao (Pos-graduacao)", "matricula": "2024003" }
+          ],
+          "tokenTemporario": "tmp-aluno-2"
+        }
+      }
+    },
+    {
+      "name": "login: docente com vinculo de servidor",
+      "priority": 1,
+      "request": {
+        "method": "POST",
+        "url": "/auth/login",
+        "bodyPatterns": [
+          { "matchesJsonPath": { "expression": "$.cpf", "equalTo": "00000000003" } },
+          { "matchesJsonPath": { "expression": "$.senha", "equalTo": "senha123" } }
+        ]
+      },
+      "response": {
+        "status": 200,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": {
+          "nome": "Ana Ficticia Pereira",
+          "vinculos": [
+            { "id": 4, "tipo": "PROFESSOR", "descricao": "Dep. de Matematica", "matricula": "P0001" },
+            { "id": 5, "tipo": "SERVIDOR", "descricao": "Coordenacao de TI (titular)", "matricula": "S0001" }
+          ],
+          "tokenTemporario": "tmp-docente-1"
+        }
+      }
+    },
+    {
+      "name": "login: qualquer outra combinacao e invalida",
+      "priority": 10,
+      "request": { "method": "POST", "url": "/auth/login" },
+      "response": {
+        "status": 401,
+        "headers": { "Content-Type": "application/json" },
+        "jsonBody": { "codigo": "CREDENCIAIS_INVALIDAS", "mensagem": "CPF ou senha invalidos" }
+      }
+    }
+  ]
+}
