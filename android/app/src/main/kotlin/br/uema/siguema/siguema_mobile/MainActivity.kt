@@ -1,5 +1,6 @@
 package br.uema.siguema.siguema_mobile
 
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 
-class MainActivity : FlutterActivity()
+// O local_auth (biometria) exige FlutterFragmentActivity.
+class MainActivity : FlutterFragmentActivity()
