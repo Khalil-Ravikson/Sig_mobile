@@ -1,0 +1,18 @@
+{
+  "id": "t03",
+  "turma": "01",
+  "notas": {
+    "n1": null,
+    "n2": null,
+    "n3": null,
+    "media": null,
+    "segundaChamada": null,
+    "final": null
+  },
+  "avaliacoes": [],
+  "docente": {
+    "nome": "Lúcia Exemplo Neves",
+    "email": "lucia.exemplo@exemplo.invalid"
+  },
+  "avisos": []
+}

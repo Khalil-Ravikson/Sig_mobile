@@ -36,4 +36,29 @@ abstract final class AppColors {
 
   /// Texto de apoio sobre o marinho.
   static const textoSobreMarinho = Color(0xFFAEB9DD);
+
+  /// Branco das superfícies (cartões, texto sobre marinho).
+  static const branco = Color(0xFFFFFFFF);
+
+  /// Fundo das telas do app (Flat 2.0): cartões brancos flutuam sobre ele.
+  static const fundoTela = Color(0xFFF6F7FB);
+
+  /// Situação positiva (Figma `status/success`, modo claro). Sempre com texto
+  /// e ícone, nunca só a cor.
+  static const sucesso = Color(0xFF167A43);
+
+  /// Situação de atenção (Figma `status/warning`, modo claro).
+  static const aviso = Color(0xFF8F6A00);
+
+  /// Fundo do selo de sucesso (Figma `status/success-subtle`).
+  static const sucessoFundo = Color(0xFFDDF3E6);
+
+  /// Fundo do selo de atenção (Figma `status/warning-subtle`).
+  static const avisoFundo = Color(0xFFFDF3C9);
+
+  /// Situação negativa, como falta (Figma `status/danger`, modo claro).
+  static const perigo = Color(0xFFC42128);
+
+  /// Fundo do selo de perigo (Figma `status/danger-subtle`).
+  static const perigoFundo = Color(0xFFFBE3E3);
 }

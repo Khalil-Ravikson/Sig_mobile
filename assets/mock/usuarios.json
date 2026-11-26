@@ -1,0 +1,62 @@
+{
+  "_aviso": "Dados 100% fictícios, só para o alpha. A senha de demonstração não vai para release.",
+  "usuarios": [
+    {
+      "cpf": "00000000001",
+      "senhaDemo": "alpha123",
+      "nome": "Ana Exemplo Souza",
+      "vinculos": [
+        {
+          "id": 1,
+          "tipo": "ALUNO",
+          "descricao": "Engenharia de Computação",
+          "matricula": "2022000001"
+        }
+      ]
+    },
+    {
+      "cpf": "00000000002",
+      "senhaDemo": "alpha123",
+      "nome": "Bruno Exemplo Lima",
+      "vinculos": [
+        {
+          "id": 2,
+          "tipo": "ALUNO",
+          "descricao": "Engenharia de Computação",
+          "matricula": "2022000002"
+        },
+        {
+          "id": 3,
+          "tipo": "ALUNO",
+          "descricao": "Pós-graduação em Engenharia da Computação",
+          "matricula": "2025000003"
+        }
+      ]
+    },
+    {
+      "cpf": "00000000003",
+      "senhaDemo": "alpha123",
+      "nome": "Carla Exemplo Costa",
+      "vinculos": [
+        {
+          "id": 4,
+          "tipo": "PROFESSOR",
+          "descricao": "Departamento de Engenharia",
+          "matricula": "9000004"
+        },
+        {
+          "id": 5,
+          "tipo": "SERVIDOR",
+          "descricao": "Coordenação de Curso",
+          "matricula": "9000005"
+        }
+      ]
+    },
+    {
+      "cpf": "00000000004",
+      "senhaDemo": "alpha123",
+      "nome": "Davi Exemplo Alves",
+      "vinculos": []
+    }
+  ]
+}

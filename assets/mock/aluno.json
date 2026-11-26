@@ -1,0 +1,18 @@
+{
+  "nome": "Ana Exemplo Souza",
+  "iniciais": "AS",
+  "matricula": "2022000001",
+  "curso": "Engenharia de Computação",
+  "nivel": "Graduação",
+  "status": "ativo",
+  "entrada": "2022.1",
+  "periodo": 7,
+  "cr": 7.25,
+  "integralizacao": {
+    "percentual": 87,
+    "horasObrigatoriasFaltam": 480,
+    "horasOptativasFaltam": 0
+  },
+  "email": "ana.exemplo@exemplo.invalid",
+  "telefone": "(98) 90000-0000"
+}
