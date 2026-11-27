@@ -1,0 +1,130 @@
+openapi: 3.0.3
+info:
+  title: SIGUEMA App API (contrato proposto)
+  version: 0.1.0
+  description: |
+    Contrato PROPOSTO pelo app. Não é a API real do SIGUEMA (ainda sem acesso).
+    Quando a API Java for liberada, este arquivo é a base da conversa com a CTIC:
+    ela implementa igual, ou um adaptador traduz a resposta dela para este formato.
+    Todos os dados de exemplo são fictícios.
+servers:
+  - url: http://localhost:4010
+    description: Mock local (Docker)
+paths:
+  /auth/login:
+    post:
+      summary: Valida CPF e senha e devolve os vínculos do usuário
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Credenciais válidas
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: CPF ou senha inválidos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Erro'
+  /auth/vinculo:
+    post:
+      summary: Escolhe o vínculo e devolve o token definitivo
+      security:
+        - tokenTemporario: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VinculoRequest'
+      responses:
+        '200':
+          description: Vínculo aceito
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VinculoResponse'
+        '401':
+          description: Token temporário ausente ou inválido
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Erro'
+components:
+  securitySchemes:
+    tokenTemporario:
+      type: http
+      scheme: bearer
+  schemas:
+    LoginRequest:
+      type: object
+      required: [cpf, senha]
+      properties:
+        cpf:
+          type: string
+          description: Somente dígitos
+          example: '00000000001'
+        senha:
+          type: string
+    Vinculo:
+      type: object
+      required: [id, tipo, descricao]
+      properties:
+        id:
+          type: integer
+          example: 1
+        tipo:
+          type: string
+          enum: [ALUNO, PROFESSOR, SERVIDOR]
+        descricao:
+          type: string
+          example: Engenharia Civil
+        matricula:
+          type: string
+          nullable: true
+          example: '2022001'
+    LoginResponse:
+      type: object
+      required: [nome, vinculos, tokenTemporario]
+      properties:
+        nome:
+          type: string
+          example: Maria Teste da Silva
+        vinculos:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vinculo'
+        tokenTemporario:
+          type: string
+    VinculoRequest:
+      type: object
+      required: [vinculoId]
+      properties:
+        vinculoId:
+          type: integer
+    VinculoResponse:
+      type: object
+      required: [token, expiraEm]
+      properties:
+        token:
+          type: string
+        expiraEm:
+          type: integer
+          description: Segundos até expirar
+          example: 900
+    Erro:
+      type: object
+      required: [codigo, mensagem]
+      properties:
+        codigo:
+          type: string
+          example: CREDENCIAIS_INVALIDAS
+        mensagem:
+          type: string
