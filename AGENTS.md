@@ -41,7 +41,7 @@ flutter test
 ```
 Alpha navegável (dados fictícios em `assets/mock/`, sem API): `flutter run --flavor dev -t lib/main_alpha.dart` (ver `docs/NOTAS-ALPHA-0.0.1.md`).
 Rodar o app (Android): suba o mock (`cd mock && docker compose up -d`) e use `flutter run --flavor dev -t lib/main_dev.dart`. Em aparelho físico, acrescente `--dart-define=API_BASE_URL=http://<ip-do-pc>:4010`.
-Antes de abrir PR: `dart format .`, `flutter analyze` e `flutter test` limpos. O CI roda a mesma sequência (com `dart format --set-exit-code`); rode o `build_runner` antes do `analyze`.
+Antes de abrir PR: `dart format .`, `flutter analyze` e `flutter test` limpos. O CI roda a mesma sequência (com `dart format --set-exit-if-changed`); rode o `build_runner` antes do `analyze`.
 
 ## O que NÃO fazer
 - Cor fora de `AppColors` (nada de hex solto); laranja não é cor de texto sobre branco.

@@ -32,7 +32,7 @@ jobs:
 
       - name: Formatação
         if: steps.tem_projeto.outputs.existe == 'true'
-        run: dart format --output=none --set-exit-code .
+        run: dart format --output=none --set-exit-if-changed .
 
       - name: Análise estática
         if: steps.tem_projeto.outputs.existe == 'true'

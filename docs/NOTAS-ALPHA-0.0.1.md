@@ -43,7 +43,7 @@ API real, banco, push, cache em disco, docente e servidor (tela "em breve"), Mat
 - `assets/mock/` está declarado no `pubspec.yaml` e **vai em todos os flavors**, inclusive `producao`. Ele traz a senha de demonstração. Antes de publicar nas lojas: tirar `assets/mock/` do `pubspec.yaml` (ou movê-lo para um flavor só do alpha) e trocar o `main_*` para a API real.
 - Fora do alpha, os repositórios de dados lançam `UnimplementedError` (não há API); os flavors `dev`, `homologacao` e `producao` só funcionam até o login.
 - O `release` Android ainda assina com a chave de debug.
-- O CI usa `dart format --output=none --set-exit-code`; neste Dart o flag certo é `--set-exit-if-changed`.
+- O CI usa `dart format --output=none --set-exit-if-changed` (o flag `--set-exit-code` não existe neste Dart e quebrava o CI).
 
 ## Mudanças de dependência e `pubspec.yaml` deste alpha
 Pacote novo: `lucide_icons_flutter ^4.0.3` (ícones). Assets: `assets/mock/`. Fonte: Public Sans (OFL) em `assets/fonts/`. Versão: `0.0.1+1`. Sugestão: um PR só para o `pubspec.yaml` (e o que ele referencia), antes dos demais.

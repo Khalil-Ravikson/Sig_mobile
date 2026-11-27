@@ -72,7 +72,7 @@ sem login → `/login`; logado sem vínculo → `/vinculo`; com vínculo → `/i
 - **API do SIGUEMA** (Java): existe, sem acesso liberado. O contrato usado é **proposto pelo app** em `mock/openapi.yaml`. Se a API real divergir, um adaptador/BFF traduz para este contrato.
 - **Mock**: WireMock em Docker (`mock/`), porta 4010. CPFs fictícios em `mock/README.md`. Manter `openapi.yaml` e `wiremock/mappings/` sincronizados.
 - **SIGAA**: integração planejada, sem acesso ainda.
-- **CI** (`.github/workflows/ci.yml`): `pub get`, `build_runner`, `dart format --set-exit-code`, `analyze`, `test`.
+- **CI** (`.github/workflows/ci.yml`): `pub get`, `build_runner`, `dart format --set-exit-if-changed`, `analyze`, `test`.
 
 ## Decisões e porquês
 | Decisão | Por quê |
