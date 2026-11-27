@@ -25,6 +25,14 @@ class AppConfig {
     nomeApp: 'SIGUEMA Dev',
   );
 
+  /// Alpha v0.0.1: nenhum dado vem da rede (só JSON local). A URL nunca é
+  /// usada; `.invalid` nunca resolve.
+  factory AppConfig.alpha() => const AppConfig(
+    ambiente: Ambiente.dev,
+    apiBaseUrl: 'http://alpha.invalid',
+    nomeApp: 'SIGUEMA Alpha',
+  );
+
   /// URL provisória (`.invalid` nunca resolve) até a CTIC informar o endereço.
   factory AppConfig.homologacao() => AppConfig(
     ambiente: Ambiente.homologacao,

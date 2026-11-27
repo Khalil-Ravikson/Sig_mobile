@@ -1,0 +1,56 @@
+{
+  "semestre": "2026.2",
+  "indices": { "cr": 7.25, "integralizacaoPercentual": 87 },
+  "turmas": [
+    {
+      "id": "t01",
+      "disciplina": "Análise e Processamento de Sinais",
+      "codigo": "ENC0701",
+      "horario": "Seg e qua · 3º e 4º horário",
+      "local": "Sala 12 · Bloco B",
+      "resumo": {
+        "frequenciaPercentual": 94,
+        "ultimaNota": 7.5,
+        "proximaProva": "2026-12-03"
+      }
+    },
+    {
+      "id": "t02",
+      "disciplina": "Ciência e Tecnologia dos Materiais",
+      "codigo": "ENC0702",
+      "horario": "Seg e qua · 3º e 4º horário",
+      "local": "Sala 8 · Bloco A",
+      "resumo": {
+        "frequenciaPercentual": 100,
+        "ultimaNota": null,
+        "proximaProva": "2026-12-10"
+      }
+    },
+    {
+      "id": "t03",
+      "disciplina": "Projeto de Trabalho de Conclusão de Curso",
+      "codigo": "ENC0799",
+      "horario": "Sem horário fixo",
+      "local": null,
+      "resumo": {
+        "frequenciaPercentual": 100,
+        "ultimaNota": null,
+        "proximaProva": null
+      }
+    }
+  ],
+  "proximasAvaliacoes": [
+    {
+      "turmaId": "t01",
+      "titulo": "Avaliação · Análise de Sinais",
+      "data": "2026-12-03",
+      "hora": "08:00"
+    },
+    {
+      "turmaId": "t02",
+      "titulo": "Avaliação final · Materiais",
+      "data": "2026-12-10",
+      "hora": "10:00"
+    }
+  ]
+}

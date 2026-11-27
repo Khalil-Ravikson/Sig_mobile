@@ -79,21 +79,21 @@ void main() {
     final completa = Sessao(login: _login([_v1]), vinculo: _v1);
 
     test('sem login manda para o login', () {
-      expect(redirecionarPorSessao(semLogin, Rotas.home), Rotas.login);
+      expect(redirecionarPorSessao(semLogin, Rotas.inicio), Rotas.login);
       expect(redirecionarPorSessao(semLogin, Rotas.vinculo), Rotas.login);
       expect(redirecionarPorSessao(semLogin, Rotas.login), isNull);
     });
 
     test('logada sem vínculo manda para a escolha', () {
       expect(redirecionarPorSessao(semVinculo, Rotas.login), Rotas.vinculo);
-      expect(redirecionarPorSessao(semVinculo, Rotas.home), Rotas.vinculo);
+      expect(redirecionarPorSessao(semVinculo, Rotas.inicio), Rotas.vinculo);
       expect(redirecionarPorSessao(semVinculo, Rotas.vinculo), isNull);
     });
 
     test('com vínculo manda para a home', () {
-      expect(redirecionarPorSessao(completa, Rotas.login), Rotas.home);
-      expect(redirecionarPorSessao(completa, Rotas.vinculo), Rotas.home);
-      expect(redirecionarPorSessao(completa, Rotas.home), isNull);
+      expect(redirecionarPorSessao(completa, Rotas.login), Rotas.inicio);
+      expect(redirecionarPorSessao(completa, Rotas.vinculo), Rotas.inicio);
+      expect(redirecionarPorSessao(completa, Rotas.inicio), isNull);
     });
   });
 }

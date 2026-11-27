@@ -1,0 +1,44 @@
+{
+  "itens": [
+    {
+      "id": "d01",
+      "titulo": "Comprovante de matrícula",
+      "subtitulo": "Semestre 2026.2",
+      "tipo": "pdf",
+      "grupo": "mais_usados",
+      "estado": "disponivel"
+    },
+    {
+      "id": "d02",
+      "titulo": "Histórico escolar",
+      "subtitulo": "Todos os semestres",
+      "tipo": "pdf",
+      "grupo": "mais_usados",
+      "estado": "disponivel"
+    },
+    {
+      "id": "d03",
+      "titulo": "Relatório de notas",
+      "subtitulo": "Por semestre",
+      "tipo": "pdf",
+      "grupo": "mais_usados",
+      "estado": "disponivel"
+    },
+    {
+      "id": "d04",
+      "titulo": "Declaração de vínculo",
+      "subtitulo": "Gerada na hora",
+      "tipo": "pdf",
+      "grupo": "declaracoes",
+      "estado": "disponivel"
+    },
+    {
+      "id": "d05",
+      "titulo": "Atestado de frequência",
+      "subtitulo": "Retirada na secretaria",
+      "tipo": "doc",
+      "grupo": "declaracoes",
+      "estado": "sob_pedido"
+    }
+  ]
+}

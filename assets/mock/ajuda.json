@@ -1,0 +1,45 @@
+{
+  "_aviso": "Textos e contatos 100% fictícios, só para o alpha.",
+  "perguntas": [
+    {
+      "id": "p01",
+      "pergunta": "Esqueci minha senha",
+      "resposta": "A senha é a mesma do SIGUEMA. Para trocá-la, use a opção de recuperação no portal ou procure a CTIC. O app nunca guarda a sua senha."
+    },
+    {
+      "id": "p02",
+      "pergunta": "Minha nota não apareceu",
+      "resposta": "As notas aparecem quando o professor as lança. Se já passou o prazo, fale com o professor ou com a secretaria do curso."
+    },
+    {
+      "id": "p03",
+      "pergunta": "Como pego o comprovante?",
+      "resposta": "Abra a aba Documentos e toque em Comprovante de matrícula. Os que dependem da secretaria aparecem como Sob pedido."
+    },
+    {
+      "id": "p04",
+      "pergunta": "Não vejo uma turma",
+      "resposta": "Confira o semestre selecionado em Turmas. Se a turma continuar sem aparecer, a matrícula pode não ter sido confirmada: procure a secretaria do curso."
+    }
+  ],
+  "contatos": [
+    {
+      "id": "c01",
+      "tipo": "ctic",
+      "titulo": "Problema no app",
+      "descricao": "CTIC · suporte do aplicativo",
+      "email": "suporte.app@exemplo.invalid",
+      "telefone": "(98) 90000-0001",
+      "horario": "Seg a sex, 8h às 17h"
+    },
+    {
+      "id": "c02",
+      "tipo": "secretaria",
+      "titulo": "Questão acadêmica",
+      "descricao": "Secretaria do curso: notas e matrícula",
+      "email": "secretaria.curso@exemplo.invalid",
+      "telefone": "(98) 90000-0002",
+      "horario": "Seg a sex, 8h às 12h"
+    }
+  ]
+}

@@ -2,6 +2,8 @@
 
 Regras do projeto para qualquer agente de IA (Claude Code, Codex, etc.) e para pessoas.
 Fonte de verdade das decisões: `docs/adr/`. Se algo aqui conflitar com uma ADR aceita, a ADR vale.
+Contexto detalhado: `docs/PRD.md` (produto), `docs/ARCHITECTURE.md` (arquitetura), `docs/DESIGN-SYSTEM.md` (design). Atualize-os quando uma decisão mudar.
+Figma: https://www.figma.com/design/1mlDbgjkCV77fX1cJGnthM/SIGUEMA-Mobile-%E2%80%94-UI-UX-Research (prioridade atual do projeto: o design).
 
 ## Contexto
 - App mobile (Flutter) do SIGUEMA para a UEMA. Execução: CTIC.
@@ -15,10 +17,9 @@ Fonte de verdade das decisões: `docs/adr/`. Se algo aqui conflitar com uma ADR 
 ## Status das decisões
 Tudo abaixo é **proposta** até virar ADR aceita. Em aberto: API do SIGUEMA existente ou BFF novo, linguagem do BFF, servidor (SO/Docker/exposição), push (Firebase), build do iOS, contas das lojas.
 
-## Stack do app (proposta)
-- Flutter + Dart. Estado: **Riverpod**. Navegação: **go_router**. HTTP: **dio** (interceptors).
-- Modelos: **freezed + json_serializable**. Tokens: **flutter_secure_storage**. Biometria: **local_auth**.
-- Cache offline (só onde precisar): **drift**. Erros: **Sentry self-hosted**. Push: FCM, com conteúdo genérico.
+## Stack do app
+Instalado (`pubspec.yaml`): Flutter 3.44 + Dart; **Riverpod**, **go_router**, **dio**, **freezed + json_serializable**, **flutter_secure_storage**, **local_auth**, **lucide_icons_flutter** (ícones).
+Só proposto, **ainda não instalado**: cache offline **drift**, erros **Sentry self-hosted**, push FCM com conteúdo genérico.
 - Testes: `flutter_test`, `mocktail`, `integration_test`.
 
 ## Arquitetura
@@ -38,7 +39,17 @@ dart format .
 flutter analyze
 flutter test
 ```
-Antes de abrir PR: `dart format .`, `flutter analyze` e `flutter test` limpos.
+Alpha navegável (dados fictícios em `assets/mock/`, sem API): `flutter run --flavor dev -t lib/main_alpha.dart` (ver `docs/NOTAS-ALPHA-0.0.1.md`).
+Rodar o app (Android): suba o mock (`cd mock && docker compose up -d`) e use `flutter run --flavor dev -t lib/main_dev.dart`. Em aparelho físico, acrescente `--dart-define=API_BASE_URL=http://<ip-do-pc>:4010`.
+Antes de abrir PR: `dart format .`, `flutter analyze` e `flutter test` limpos. O CI roda a mesma sequência (com `dart format --set-exit-if-changed`); rode o `build_runner` antes do `analyze`.
+
+## O que NÃO fazer
+- Cor fora de `AppColors` (nada de hex solto); laranja não é cor de texto sobre branco.
+- Versionar `*.g.dart` ou `*.freezed.dart`.
+- Dado real (CPF, nome, nota) em mocks, testes ou exemplos.
+- Chamar o `dio` fora de `*_api.dart`.
+- Instalar pacote novo (ex.: `drift`, Sentry, Firebase) sem avisar.
+- Mudar o design por conta própria: o Figma é a fonte do design.
 
 ## Regras de segurança e LGPD (inegociáveis)
 - Nunca guardar a senha no aparelho; só tokens de curta duração em `flutter_secure_storage`.

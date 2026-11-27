@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'app_colors.dart';
+import 'app_text.dart';
 
 abstract final class AppTheme {
   static ThemeData claro() {
@@ -13,6 +14,7 @@ abstract final class AppTheme {
     return ThemeData(
       useMaterial3: true,
       colorScheme: esquema,
+      fontFamily: AppText.familia,
       scaffoldBackgroundColor: Colors.white,
     );
   }
