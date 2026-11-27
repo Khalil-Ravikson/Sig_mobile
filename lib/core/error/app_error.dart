@@ -16,6 +16,10 @@ class NaoAutorizado extends AppError {
   const NaoAutorizado() : super('CPF ou senha inválidos.');
 }
 
+class SessaoExpirada extends AppError {
+  const SessaoExpirada() : super('Sua sessão expirou. Entre de novo.');
+}
+
 class ErroServidor extends AppError {
   const ErroServidor() : super('Erro no servidor. Tente novamente.');
 }

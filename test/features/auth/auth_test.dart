@@ -8,9 +8,12 @@ import 'package:siguema_mobile/features/auth/data/auth_api.dart';
 import 'package:siguema_mobile/features/auth/data/auth_mapper.dart';
 import 'package:siguema_mobile/features/auth/data/auth_repository_impl.dart';
 import 'package:siguema_mobile/features/auth/data/login_dto.dart';
+import 'package:siguema_mobile/features/auth/data/vinculo_dto.dart';
 import 'package:siguema_mobile/features/auth/domain/vinculo.dart';
 import 'package:siguema_mobile/features/auth/presentation/auth_providers.dart';
 import 'package:siguema_mobile/features/auth/presentation/login_view_model.dart';
+
+import '../../support/fake_token_store.dart';
 
 class _MockAuthApi extends Mock implements AuthApi {}
 
@@ -35,11 +38,51 @@ void main() {
 
   group('AuthRepositoryImpl', () {
     late _MockAuthApi api;
+    late FakeTokenStore tokens;
     late AuthRepositoryImpl repo;
 
     setUp(() {
       api = _MockAuthApi();
-      repo = AuthRepositoryImpl(api);
+      tokens = FakeTokenStore();
+      repo = AuthRepositoryImpl(api, tokens);
+    });
+
+    test('escolher vínculo guarda o token definitivo', () async {
+      when(() => api.escolherVinculo(1, 'tmp')).thenAnswer(
+        (_) async =>
+            const EscolhaVinculoResponseDto(token: 'tok-def', expiraEm: 900),
+      );
+      final r = await repo.escolherVinculo(
+        vinculoId: 1,
+        tokenTemporario: 'tmp',
+      );
+      expect(r, isA<Sucesso<void>>());
+      expect(tokens.token, 'tok-def');
+    });
+
+    test('escolher vínculo com 401 vira SessaoExpirada e não guarda', () async {
+      when(() => api.escolherVinculo(any(), any())).thenThrow(
+        DioException(
+          requestOptions: RequestOptions(),
+          type: DioExceptionType.badResponse,
+          response: Response<void>(
+            requestOptions: RequestOptions(),
+            statusCode: 401,
+          ),
+        ),
+      );
+      final r = await repo.escolherVinculo(
+        vinculoId: 1,
+        tokenTemporario: 'velho',
+      );
+      expect((r as Falha<void>).erro, isA<SessaoExpirada>());
+      expect(tokens.token, isNull);
+    });
+
+    test('sair apaga o token', () async {
+      tokens.token = 'tok-def';
+      await repo.sair();
+      expect(tokens.token, isNull);
     });
 
     test('devolve Sucesso com o modelo mapeado', () async {
@@ -71,7 +114,9 @@ void main() {
       when(() => api.login(any(), any())).thenAnswer((_) async => _dto);
       final container = ProviderContainer(
         overrides: [
-          authRepositoryProvider.overrideWithValue(AuthRepositoryImpl(api)),
+          authRepositoryProvider.overrideWithValue(
+            AuthRepositoryImpl(api, FakeTokenStore()),
+          ),
         ],
       );
       addTearDown(container.dispose);

@@ -19,6 +19,7 @@ Future<void> _abrir(WidgetTester tester, Vinculo vinculo) async {
           tokenTemporario: 't',
         ),
       );
+  container.read(sessaoProvider.notifier).escolherVinculo(vinculo);
   await tester.pumpWidget(
     UncontrolledProviderScope(
       container: container,
