@@ -3,7 +3,14 @@
 App mobile (Flutter, Android e iOS) do SIGUEMA, da UEMA. Projeto da CTIC.
 
 ## Status
-Em fase de **Sprint 0**: estrutura do repositório, decisões de stack e spike de login. O projeto Flutter ainda não foi criado. Veja `docs/` e o backlog.
+**Alpha v0.0.1**: protótipo navegável do discente (login, Início, Turmas, Turma virtual, Documentos, Perfil, Configurações e Ajuda), com **dados 100% fictícios** em JSON local e sem API. Escopo em `docs/ALPHA-0.0.1.md`; o que é de mentira e como testar em `docs/NOTAS-ALPHA-0.0.1.md`.
+
+### Rodar o alpha
+```bash
+flutter pub get
+dart run build_runner build --delete-conflicting-outputs
+flutter run --flavor dev -t lib/main_alpha.dart
+```
 
 ## Como rodar (após criar o projeto)
 ```bash

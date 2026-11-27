@@ -1,0 +1,30 @@
+{
+  "id": "t01",
+  "turma": "01",
+  "notas": {
+    "n1": 5.0,
+    "n2": 7.5,
+    "n3": null,
+    "media": 6.3,
+    "segundaChamada": null,
+    "final": null
+  },
+  "avaliacoes": [
+    {
+      "data": "2026-12-03",
+      "hora": "08:00",
+      "descricao": "Avaliação · Análise de Sinais"
+    }
+  ],
+  "docente": {
+    "nome": "Helena Exemplo Prado",
+    "email": "helena.exemplo@exemplo.invalid"
+  },
+  "avisos": [
+    {
+      "data": "2026-11-20",
+      "titulo": "Revisão para a prova",
+      "texto": "Texto fictício do aviso."
+    }
+  ]
+}

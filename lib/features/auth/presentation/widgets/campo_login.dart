@@ -3,7 +3,8 @@ import 'package:flutter/services.dart';
 
 import '../../../../core/theme/app_colors.dart';
 
-/// Campo de texto do login (rótulo, caixa de 12 px de raio e mensagem de erro).
+/// Campo de texto do login: preenchimento tonal, caixa de 12 px de raio, linha
+/// azul no foco e vermelha no erro, com a mensagem abaixo.
 class CampoLogin extends StatelessWidget {
   const CampoLogin({
     super.key,
@@ -69,15 +70,17 @@ class CampoLogin extends StatelessWidget {
             autofillHints: autofillHints,
             onChanged: onChanged,
             onSubmitted: onSubmitted,
-            style: const TextStyle(fontSize: 15, color: AppColors.tinta),
+            style: const TextStyle(fontSize: 15, color: AppColors.marinho),
             decoration: InputDecoration(
               hintText: dica,
               hintStyle: const TextStyle(
                 fontSize: 15,
-                color: AppColors.textoSuave,
+                color: AppColors.textoSecundario,
               ),
               filled: true,
-              fillColor: Colors.white,
+              fillColor: temErro
+                  ? AppColors.fundoCampoErro
+                  : AppColors.fundoCampo,
               contentPadding: const EdgeInsets.all(14),
               // `suffix` só aparece com o campo focado; `suffixIcon` sempre.
               suffixIcon: sufixo == null
@@ -89,11 +92,11 @@ class CampoLogin extends StatelessWidget {
               suffixIconConstraints: const BoxConstraints(),
               enabledBorder: temErro
                   ? _borda(AppColors.erro, 2)
-                  : _borda(AppColors.borda, 1),
+                  : _borda(Colors.transparent, 2),
               focusedBorder: temErro
                   ? _borda(AppColors.erro, 2)
-                  : _borda(AppColors.tinta, 2),
-              disabledBorder: _borda(AppColors.borda, 1),
+                  : _borda(AppColors.azulAcao, 2),
+              disabledBorder: _borda(Colors.transparent, 2),
             ),
           ),
         ),

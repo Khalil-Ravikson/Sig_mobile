@@ -20,6 +20,10 @@ class SessaoExpirada extends AppError {
   const SessaoExpirada() : super('Sua sessão expirou. Entre de novo.');
 }
 
+class NaoEncontrado extends AppError {
+  const NaoEncontrado() : super('Não encontramos o que você procurava.');
+}
+
 class ErroServidor extends AppError {
   const ErroServidor() : super('Erro no servidor. Tente novamente.');
 }

@@ -1,0 +1,24 @@
+{
+  "id": "t02",
+  "turma": "01",
+  "notas": {
+    "n1": null,
+    "n2": null,
+    "n3": null,
+    "media": null,
+    "segundaChamada": null,
+    "final": null
+  },
+  "avaliacoes": [
+    {
+      "data": "2026-12-10",
+      "hora": "10:00",
+      "descricao": "Avaliação final · Materiais"
+    }
+  ],
+  "docente": {
+    "nome": "Marcos Exemplo Reis",
+    "email": "marcos.exemplo@exemplo.invalid"
+  },
+  "avisos": []
+}
