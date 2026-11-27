@@ -48,6 +48,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           if (login == null) return const SizedBox.shrink();
           return VinculoPage(
             resultado: login,
+            onSair: () => ref.read(sessaoProvider.notifier).sair(),
             onEscolher: (v) =>
                 ref.read(sessaoProvider.notifier).escolherVinculo(v),
           );

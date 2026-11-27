@@ -19,7 +19,8 @@ Para parar: `docker compose down`.
 |---|---|
 | `00000000001` | 1 vínculo (aluno): a escolha de vínculo é pulada |
 | `00000000002` | 2 vínculos (graduação e pós) |
-| `00000000003` | docente e servidor |
+| `00000000003` | docente e servidor (2 vínculos) |
+| `00000000004` | discente sem nenhum vínculo ativo: aparece o aviso para procurar a secretaria |
 | qualquer outro, ou senha errada | 401 `CREDENCIAIS_INVALIDAS` |
 
 `POST /auth/vinculo` aceita um token `Bearer tmp-...` (o que o login devolve) e responde 200. Sem esse cabeçalho, 401.

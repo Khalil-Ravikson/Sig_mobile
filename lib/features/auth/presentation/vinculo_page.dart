@@ -12,10 +12,14 @@ class VinculoPage extends StatelessWidget {
     super.key,
     required this.resultado,
     required this.onEscolher,
+    this.onSair,
   });
 
   final ResultadoLogin resultado;
   final ValueChanged<Vinculo> onEscolher;
+
+  /// Saída para quem não tem vínculo nenhum e não teria como voltar.
+  final VoidCallback? onSair;
 
   static const _alturaHero = 250.0;
 
@@ -92,13 +96,23 @@ class VinculoPage extends StatelessWidget {
                     ),
                   ),
                   child: resultado.vinculos.isEmpty
-                      ? const Text(
-                          'Nenhum vínculo ativo no seu cadastro. '
-                          'Procure a secretaria do seu curso.',
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: AppColors.textoSecundario,
-                          ),
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Nenhum vínculo ativo no seu cadastro. '
+                              'Procure a secretaria do seu curso.',
+                              style: TextStyle(
+                                fontSize: 13,
+                                color: AppColors.textoSecundario,
+                              ),
+                            ),
+                            if (onSair != null)
+                              TextButton(
+                                onPressed: onSair,
+                                child: const Text('Sair'),
+                              ),
+                          ],
                         )
                       : Column(
                           children: [
